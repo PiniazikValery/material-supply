@@ -1,0 +1,17 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "scripts": {
+        "prestart": "npm install",
+        "start": "nodemon ./App.js"
+    },
+    "dependencies": {
+        "cookie-parser": "^1.4.4",
+        "express": "^4.16.4",
+        "body-parser": "^1.18.3",
+        "http": "0.0.0"
+    },
+    "devDependencies": {
+        "nodemon": "^1.19.1"
+    }
+}

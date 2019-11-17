@@ -3,18 +3,11 @@
     "version": "1.0.0",
     "scripts": {
         "client": "cd client && npm run start",
-        "server": "nodemon ./server/App.js",
+        "server": "cd server && npm run start",
         "prestart": "npm install",
         "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
     },
-    "dependencies": {
-        "cookie-parser": "^1.4.4",
-        "express": "^4.16.4",
-        "body-parser": "^1.18.3",
-        "http": "0.0.0"
-    },
     "devDependencies": {
-        "concurrently": "^4.0.1",
-        "nodemon": "^1.19.1"
+        "concurrently": "^4.0.1"
     }
 }
