@@ -1,0 +1,9 @@
+{
+    "db_config": {
+        "connection_string": "bW9uZ29kYitzcnY6Ly9waW52YWw6MTIzNDVAY2x1c3RlcjAtajFpYTQubW9uZ29kYi5uZXQvdGVzdD9yZXRyeVdyaXRlcz10cnVlJnc9bWFqb3JpdHk="
+    },
+    "application_port": 5000,
+    "JWT": {
+        "secret": "super_secret"
+    }
+}
