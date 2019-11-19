@@ -1,17 +1,18 @@
 const User = require('../../../models/account/user');
 
 exports.register_user = (req, res) => {
-    const { email, username, password, password2 } = req.body;
+    const { email, username, role, password, password2 } = req.body;
     const registration_errors = [];
 
     if (!email || !username || !password || !password2) {
         registration_errors.push({ err_msg: 'Please enter all fields' });
-    }
-    if (password != password2) {
-        registration_errors.push({ err_msg: 'Passwords do not match' });
-    }
-    if (password.length < 6) {
-        registration_errors.push({ err_msg: 'Password must be at least 6 characters' });
+    } else {
+        if (password != password2) {
+            registration_errors.push({ err_msg: 'Passwords do not match' });
+        }
+        if (password.length < 6) {
+            registration_errors.push({ err_msg: 'Password must be at least 6 characters' });
+        }
     }
 
     if (registration_errors.length > 0) {
