@@ -1,0 +1,34 @@
+{
+    "initial_locations": [
+        {
+            "province": "Minsk Region",
+            "city": "Minsk",
+            "street": "central street"
+        },
+        {
+            "province": "Mogilev Region",
+            "city": "Mogilev",
+            "street": "central street"
+        },
+        {
+            "province": "Gomel Region",
+            "city": "Gomel",
+            "street": "central street"
+        },
+        {
+            "province": "Vitebsk Region",
+            "city": "Vitebsk",
+            "street": "central street"
+        },
+        {
+            "province": "Brest Region",
+            "city": "Brest",
+            "street": "central street"
+        },
+        {
+            "province": "Grodno Region",
+            "city": "Grodno",
+            "street": "central street"
+        }
+    ]
+}

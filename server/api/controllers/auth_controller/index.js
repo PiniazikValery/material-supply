@@ -1,4 +1,5 @@
-const User = require('../../../models/account/user');
+const User = require('../../../models/account_models/user');
+const Role = require('../../../models/account_models/role');
 
 exports.register_user = (req, res) => {
     const { email, username, password, password2 } = req.body;
@@ -6,12 +7,13 @@ exports.register_user = (req, res) => {
 
     if (!email || !username || !password || !password2) {
         registration_errors.push({ err_msg: 'Please enter all fields' });
-    }
-    if (password != password2) {
-        registration_errors.push({ err_msg: 'Passwords do not match' });
-    }
-    if (password.length < 6) {
-        registration_errors.push({ err_msg: 'Password must be at least 6 characters' });
+    } else {
+        if (password != password2) {
+            registration_errors.push({ err_msg: 'Passwords do not match' });
+        }
+        if (password.length < 6) {
+            registration_errors.push({ err_msg: 'Password must be at least 6 characters' });
+        }
     }
 
     if (registration_errors.length > 0) {
@@ -25,17 +27,26 @@ exports.register_user = (req, res) => {
                     error_msg: 'User with email already exist'
                 });
             }
-            const new_user = new User({
-                username,
-                email,
-                password
-            });
 
-            new_user.save().then(() => {
-                res.status(201).json({
-                    message: `User with name ${username} has been created`,
+            Role.get_id_by_role('guest').then(id => {
+                const new_user = new User({
+                    username,
+                    email,
+                    password,
+                    role: id
                 });
-            });
+                new_user.save().then(() => {
+                    res.status(201).json({
+                        message: `User with username ${username} has been created`,
+                    });
+                });
+            })
+                .catch(err => {
+                    res.status(500).json({
+                        message: 'Some internal error occurred',
+                        err_msg: err
+                    });
+                });
         });
     }
 };

@@ -8,6 +8,8 @@ const auth_routes = require('./api/routes/auth');
 const config = require('config');
 const app = express();
 const port = process.env.PORT || config.get('application_port');
+const Role = require('./models/account_models/role');
+const Location = require('./models/location');
 
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -32,6 +34,8 @@ db.on('error', (error) => {
 });
 
 db.once('open', () => {
+  Role.init_data();
+  Location.init_data();
   console.log('Server is connected to data base');
 });
 

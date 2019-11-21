@@ -1,0 +1,8 @@
+{
+    "roles": [
+        "admin",
+        "guest",
+        "client",
+        "supplier"
+    ]
+}
