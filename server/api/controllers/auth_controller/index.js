@@ -21,14 +21,14 @@ exports.register_user = (req, res) => {
             registration_errors
         });
     } else {
-        User.findOne({ email: email }).then(user => {
+        User.findOne({ email: email }).then(async (user) => {
             if (user) {
                 res.status(500).json({
                     error_msg: 'User with email already exist'
                 });
             }
 
-            Role.get_id_by_role('guest').then(id => {
+            Role.get_id_by_role(await User.getCount() === 0 ? 'super_admin' : 'guest').then(id => {
                 const new_user = new User({
                     username,
                     email,

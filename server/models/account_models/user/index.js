@@ -38,5 +38,15 @@ UserSchema.statics.verifyUser = (id, done) => {
     });
 };
 
+UserSchema.statics.getCount = () => {
+    return User.countDocuments({}, (err, count) => {
+        if (err) {
+            console.log(err);
+        } else {
+            return count;
+        }
+    });
+};
+
 const User = mongoose.model('User', UserSchema);
 module.exports = User;
