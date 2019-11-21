@@ -18,5 +18,17 @@ RoleSchema.statics.init_data = () => {
     });
 };
 
+RoleSchema.statics.get_id_by_role = (role) => {
+    return Role.findOne({ name: role }).then(role => {
+        return new Promise((resolve, reject) => {
+            if (role) {
+                resolve(role.id);
+            } else {
+                reject('role not found');
+            }
+        })
+    });
+};
+
 const Role = mongoose.model('Role', RoleSchema);
 module.exports = Role;

@@ -5,7 +5,10 @@ const UserSchema = new mongoose.Schema({
     username: String,
     email: String,
     password: String,
-    role: String,
+    role: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Role'
+    },
     updated_at: { type: Date, default: Date.now },
 });
 
