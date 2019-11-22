@@ -28,16 +28,6 @@ UserSchema.pre('save', function hashPassword(next) {
     }
 });
 
-UserSchema.statics.verifyUser = (id, done) => {
-    User.findById(id).then(user => {
-        if (user) {
-            return done(null, user);
-        } else {
-            return done(null, false);
-        }
-    });
-};
-
 UserSchema.statics.getCount = () => {
     return User.countDocuments({}, (err, count) => {
         if (err) {
@@ -45,6 +35,12 @@ UserSchema.statics.getCount = () => {
         } else {
             return count;
         }
+    });
+};
+
+UserSchema.statics.findUserByEmail = (email) => {
+    return User.findOne({ email: email }).then(user => {
+        return Promise.resolve(user);
     });
 };
 
