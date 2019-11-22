@@ -7,7 +7,13 @@ const User = require('../../../models/account/user');
 passport.use(new BearerStrategy((token, done) => {
     try {
         const { user_id } = jwt.decode(token, config.get('JWT.secret'));
-        User.verifyUser(user_id, done);
+        User.findOne({ id: user_id }).then(user => {
+            if (user) {
+                return done(null, user);
+            } else {
+                return done(null, false);
+            }
+        });
     } catch (error) {
         done(null, false);
     }
